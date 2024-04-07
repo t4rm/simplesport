@@ -1,1 +1,33 @@
-<p>seance works!</p>
+<div class="size-full p-10">
+    <h1 class="text-3xl text-center font-semibold mb-10">Construisons votre séance ensemble</h1>
+
+    <div class="px-52 py-10 size-full">
+        <div class="rounded-3xl bg-zinc-100 size-full flex">
+            <div class="flex flex-col gap-10">
+                <div class="w-96 min-h-fit p-4 flex flex-col gap-4">
+                    <h2 class="text-xl font-semibold">Commençons par sélectionner un muscle :</h2>
+                    <app-dropdown-muscle (selectedValue)="onMuscleSelected($event)" />
+                    <h2 *ngIf="selectedMuscle" class="text-xl font-semibold">Pour quel objectif ?</h2>
+                    <app-radio-type *ngIf="selectedMuscle" (selectedTypeEvent)="onTypeSelected($event)" />
+                </div>
+                <div class="flex w-96 flex-col p-4 h-full border-t-2">
+                    <h2 class="text-xl font-semibold">Récapitulatif de votre séance :</h2>
+                    <div></div>
+                    <button *ngIf="exercises.length != 0" pButton pRipple type="button" label="Exporter"
+                        class="p-button-raised bg-emerald-200 w-fit px-4 py-2 ml-auto mt-auto"
+                        (click)="exportPDF($event)"></button>
+                </div>
+            </div>
+            <div class="flex flex-col size-full p-4 gap-4 border-l-2">
+                <h2 *ngIf="loading" class="text-xl font-semibold">Chargement
+                    des exercices...</h2>
+                <h2 *ngIf="selectedType && exercises.length === 0 && !loading" class="text-xl font-semibold">Aucuns
+                    exercices
+                    disponibles pour ces critères.</h2>
+                <h2 *ngIf="exercises.length !=0 && !loading" class="text-xl font-semibold">Ensuite, choisissez un
+                    exercice :</h2>
+                <app-exercises *ngIf="exercises.length != 0 && !loading" [exercises]="exercises" />
+            </div>
+        </div>
+    </div>
+</div>

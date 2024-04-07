@@ -1,1 +1,22 @@
-<p>exercises works!</p>
+<div class="card">
+    <p-pickList [source]="exercises" [target]="selectedExercises" sourceHeader="Correspondances"
+        targetHeader="Sélectionnés" [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '100%' }"
+        [targetStyle]="{ height: '30rem' }" breakpoint="1400px">
+        <ng-template let-exo pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center gap-3">
+                <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round"
+                    src="https://primefaces.org/cdn/primeng/images/demo/exo/{{ exo.image }}"
+                    alt="{item.name}" /> -->
+                <div class="flex-1 flex flex-column gap-2">
+                    <span class="font-bold">{{ exo.name }}</span>
+                    <div class="flex align-items-center gap-2">
+                        <!-- <i class="pi pi-tag text-sm"></i> -->
+                        <span>{{ exo.category }}</span>
+                    </div>
+                </div>
+                <img class="w-[10%]" src="../../../../assets/pages/components/difficulties/{{ exo.difficulty }}.png"
+                    alt="{exo.difficulty}" />
+            </div>
+        </ng-template>
+    </p-pickList>
+</div>

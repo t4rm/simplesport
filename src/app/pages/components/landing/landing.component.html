@@ -1,8 +1,8 @@
-<div class="relative -z-10 w-full h-3/4 max-h-[650px] flex flex-col text-center py-40 bg-gym bg-cover bg-center">
-    <div class="absolute size-full bg-black bg-opacity-50 inset-0 z-0"></div>
+<div class="relative z-auto w-full h-3/4 max-h-[650px] flex flex-col text-center py-40 bg-gym bg-cover bg-center">
+    <div class="absolute size-full bg-black bg-opacity-50 inset-0 z0"></div>
     <div class="relative z-1 text-white">
         <h1 class="font-bold text-3xl">Simple Sport</h1>
         <h2 class="text-xl text-zinc-400 mb-10">Simplifiez votre entraînement, maximisez vos résultats !</h2>
-        <a routerLink="seance" class="p-button font-bold w-fit">Découvrir le Séance'Omatic</a>
+        <a [routerLink]="'seance'" class="p-button font-bold w-fit relative z-50">Découvrir le Séance'Omatic</a>
     </div>
 </div>
