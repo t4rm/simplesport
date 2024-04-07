@@ -1,4 +1,4 @@
-<aside [@slideInOut]="menuState" class="absolute left-4 top-28">
+<aside [@slideInOut]="menuState" class="absolute left-4 top-28 z-30">
     <nav class="flex flex-col gap-1 p-4 bg-zinc-200 size-fit shadow-xl rounded-2xl">
         <ng-container *ngFor="let item of model;">
             <app-menuitem [item]="item" />
