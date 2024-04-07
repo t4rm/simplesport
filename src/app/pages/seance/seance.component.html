@@ -12,7 +12,8 @@
                 </div>
                 <div class="flex w-96 flex-col p-4 h-full border-t-2">
                     <h2 class="text-xl font-semibold">Récapitulatif de votre séance :</h2>
-                    <div></div>
+                    <div>
+                    </div>
                     <button *ngIf="exercises.length != 0" pButton pRipple type="button" label="Exporter"
                         class="p-button-raised bg-emerald-200 w-fit px-4 py-2 ml-auto mt-auto"
                         (click)="exportPDF($event)"></button>
@@ -26,7 +27,8 @@
                     disponibles pour ces critères.</h2>
                 <h2 *ngIf="exercises.length !=0 && !loading" class="text-xl font-semibold">Ensuite, choisissez un
                     exercice :</h2>
-                <app-exercises *ngIf="exercises.length != 0 && !loading" [exercises]="exercises" />
+                <app-exercises *ngIf="exercises.length != 0 && !loading" [exercises]="exercises"
+                    class="overflow-auto" />
             </div>
         </div>
     </div>
