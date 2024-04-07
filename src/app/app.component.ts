@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AppRoutingModule } from './app.routes';
+import { SidemenuComponent } from './layout/sidemenu/sidemenu.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [
+    SidemenuComponent,
+    HeaderComponent,
+    FooterComponent,
+    RouterModule
+  ],
 })
 export class AppComponent {
   title = 'simplesport';
