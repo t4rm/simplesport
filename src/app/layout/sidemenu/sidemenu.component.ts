@@ -30,7 +30,7 @@ export class SidemenuComponent {
     this.model = [
       { label: 'Accueil', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
       { label: 'Séance\'omatic', icon: 'pi pi-fw pi-calendar', routerLink: ['/seance'] },
-      { label: 'Salles', icon: 'pi pi-fw pi-map-marker', routerLink: ['/salle'] },
+      { label: 'Salles', icon: 'pi pi-fw pi-map-marker', routerLink: ['/salles'] },
     ]
   }
 }
