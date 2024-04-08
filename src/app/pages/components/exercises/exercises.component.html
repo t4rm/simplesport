@@ -1,18 +1,17 @@
 <div class="card">
     <p-pickList [source]="exercises" [target]="selectedExercises" sourceHeader="Correspondances"
-        targetHeader="Sélectionnés" [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: 'fit-content' }"
-        [targetStyle]="{ height: '30rem' }" breakpoint="1400px">
-        <ng-template let-exo pTemplate="item">
+        targetHeader="Sélectionnés" [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '100%' }"
+        [targetStyle]="{ height: '100%' }" breakpoint="1400px" (onMoveToSource)="updateSelectedExercises()"
+        (onMoveToTarget)="updateSelectedExercises()">
+        <ng-template let-exo pTemplate=" item">
             <div class="flex flex-wrap p-2 align-items-center gap-3">
                 <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round"
                     src="https://primefaces.org/cdn/primeng/images/demo/exo/{{ exo.image }}"
                     alt="{item.name}" /> -->
-                <div class="flex-1 flex flex-column gap-2">
+                <div class="flex-1 flex items-center gap-2">
                     <span class="font-bold">{{ exo.name }}</span>
-                    <div class="flex align-items-center gap-2">
-                        <!-- <i class="pi pi-tag text-sm"></i> -->
-                        <span>{{ exo.category }}</span>
-                    </div>
+                    <!-- <i class="pi pi-tag text-sm"></i> -->
+                    <span class="text-xs text-zinc-300">{{ equipment.get(exo.equipment) }}</span>
                 </div>
                 <img class="block max-w-[48px] max-h-[15px] xl:max-w-[64px] xl:max-h-[20px] w-auto h-auto"
                     src="../../../../assets/pages/components/difficulties/{{ exo.difficulty }}.png"

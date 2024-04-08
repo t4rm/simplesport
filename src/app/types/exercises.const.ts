@@ -26,3 +26,12 @@ export const TYPES: Map<string, string> = new Map([
     ['stretching', 'Étirement'],
     ['strongman', 'Strongman']
 ]);
+
+export const EQUIPMENT: Map<string, string> = new Map([
+    ['barbell', 'Haltère'],
+    ['dumbbell', 'Haltère'],
+    ['none', 'Aucun'],
+    ['body_only', 'Corps seulement'],
+    ['cable', 'Câble'],
+    ['other', 'Autre'],
+]);

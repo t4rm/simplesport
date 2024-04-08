@@ -25,8 +25,9 @@ export class SeanceComponent {
   private _exercises: Exercise[] = [];
   private _selectedMuscle: string = "";
   private _selectedType: string = "";
-  private _selectedExercise: Exercise | null = null;
+  private _selectedExercises: Exercise[] = [];
   private _loading: boolean = false;
+  private _firstLoad: boolean = true;
 
   constructor(private http: HttpClient) { }
 
@@ -34,8 +35,9 @@ export class SeanceComponent {
   get exercises(): Exercise[] { return this._exercises; }
   get selectedMuscle(): string { return this._selectedMuscle; }
   get selectedType(): string { return this._selectedType; }
-  get selectedExercise(): Exercise | null { return this._selectedExercise; }
+  get selectedExercises(): Exercise[] { return this._selectedExercises; }
   get loading(): boolean { return this._loading; }
+  get firstLoad(): boolean { return this._firstLoad; }
   //
 
 
@@ -43,17 +45,22 @@ export class SeanceComponent {
     if (!this.muscles.has(value))
       throw new Error('Muscle inconnu');
 
-    console.log("Muscle sélectionné : ", value)
     this._selectedMuscle = value;
+    if (this.selectedType !== "") this.fetchExercises();
   }
 
   onTypeSelected(value: string) {
     if (!this.types.has(value))
       throw new Error('Muscle inconnu');
 
-    console.log("Type sélectionné : ", value)
     this._selectedType = value;
     this.fetchExercises();
+  }
+
+  onExercisesSelected(value: Exercise[]) {
+    this._selectedExercises = value;
+    console.log(this._selectedExercises)
+
   }
 
   exportPDF(event: Event) {
@@ -72,8 +79,7 @@ export class SeanceComponent {
     this.http.get<Exercise[]>(url, { headers: headers })
       .pipe(
         tap((result) => {
-          console.log('Exercises:', result);
-          this._exercises = result;
+          this._exercises = [...this._exercises, ...result];
         }),
         catchError((error) => {
           console.error('Error:', error);
@@ -81,6 +87,7 @@ export class SeanceComponent {
         }),
         tap(() => {
           this._loading = false;
+          this._firstLoad = false;
         })
       )
       .subscribe();
