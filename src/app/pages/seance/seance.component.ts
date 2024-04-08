@@ -10,11 +10,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RadioTypeComponent } from '../components/radio-type/radio-type.component';
 import { Exercise } from "../../types/exercise";
 import { TYPES, MUSCLES } from "../../types/exercises.const";
+import { RecapComponent } from '../components/recap/recap.component';
 
 @Component({
   selector: 'app-seance',
   standalone: true,
-  imports: [ExercisesComponent, DropdownMuscleComponent, ButtonModule, CommonModule, RadioTypeComponent],
+  imports: [ExercisesComponent, DropdownMuscleComponent, ButtonModule, CommonModule, RadioTypeComponent, RecapComponent],
   templateUrl: './seance.component.html'
 })
 

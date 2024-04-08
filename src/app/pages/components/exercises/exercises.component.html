@@ -12,6 +12,12 @@
                     <span class="font-bold">{{ exo.name }}</span>
                     <!-- <i class="pi pi-tag text-sm"></i> -->
                     <span class="text-xs text-zinc-300">{{ equipment.get(exo.equipment) }}</span>
+                    <p-button (click)="showDialog()" icon="pi pi-external-link" class="z-10 mx-auto"
+                        label="Détail"></p-button>
+                    <p-dialog [modal]="true" header="{{ exo.name }}" [(visible)]="visible"
+                        [style]="{ width: '50vw', height: '300px' }">
+                        <p>{{ exo.instructionsTranslate }}</p>
+                    </p-dialog>
                 </div>
                 <img class="block max-w-[48px] max-h-[15px] xl:max-w-[64px] xl:max-h-[20px] w-auto h-auto"
                     src="../../../../assets/pages/components/difficulties/{{ exo.difficulty }}.png"
