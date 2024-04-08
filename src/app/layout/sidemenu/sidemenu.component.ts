@@ -28,9 +28,9 @@ export class SidemenuComponent {
 
   ngOnInit() {
     this.model = [
-      { label: 'Accueil', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-      { label: 'Séance\'omatic', icon: 'pi pi-fw pi-calendar', routerLink: ['/seance'] },
-      { label: 'Salles', icon: 'pi pi-fw pi-map-marker', routerLink: ['/salles'] },
+      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+      { label: 'Session\'omatic', icon: 'pi pi-fw pi-calendar', routerLink: ['/session'] },
+      { label: 'Gyms', icon: 'pi pi-fw pi-map-marker', routerLink: ['/gyms'] },
     ]
   }
 }

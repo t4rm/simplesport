@@ -8,8 +8,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'salles', component: SallesComponent },
-    { path: 'seance', component: SeanceComponent },
+    { path: 'gyms', component: SallesComponent },
+    { path: 'session', component: SeanceComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ];

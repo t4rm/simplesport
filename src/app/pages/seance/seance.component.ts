@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ExercisesComponent } from '../components/exercises/exercises.component';
 import { DropdownMuscleComponent } from '../components/dropdown-muscle/dropdown-muscle.component';
 import { ButtonModule } from 'primeng/button';
@@ -11,11 +11,12 @@ import { RadioTypeComponent } from '../components/radio-type/radio-type.componen
 import { Exercise } from "../../types/exercise";
 import { TYPES, MUSCLES } from "../../types/exercises.const";
 import { RecapComponent } from '../components/recap/recap.component';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-seance',
   standalone: true,
-  imports: [ExercisesComponent, DropdownMuscleComponent, ButtonModule, CommonModule, RadioTypeComponent, RecapComponent],
+  imports: [ExercisesComponent, DropdownMuscleComponent, ButtonModule, CommonModule, RadioTypeComponent, RecapComponent, DialogModule],
   templateUrl: './seance.component.html'
 })
 
@@ -29,6 +30,8 @@ export class SeanceComponent {
   private _selectedExercises: Exercise[] = [];
   private _loading: boolean = false;
   private _firstLoad: boolean = true;
+
+  @Input() visible: boolean = false;
 
   constructor(private http: HttpClient) { }
 

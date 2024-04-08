@@ -1,9 +1,8 @@
 <div class="card">
-    <p-pickList [source]="exercises" [target]="selectedExercises" sourceHeader="Correspondances"
-        targetHeader="Sélectionnés" [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '100%' }"
-        [targetStyle]="{ height: '100%' }" breakpoint="1400px" (onMoveToSource)="updateSelectedExercises()"
-        (onMoveToTarget)="updateSelectedExercises()">
-        <ng-template let-exo pTemplate=" item">
+    <p-pickList [source]="exercises" [target]="selectedExercises" sourceHeader="Available" targetHeader="Selected"
+        [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '100%' }" [targetStyle]="{ height: '100%' }"
+        breakpoint="1400px" (onMoveToSource)="updateSelectedExercises()" (onMoveToTarget)="updateSelectedExercises()">
+        <ng-template let-exo pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center gap-3">
                 <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round"
                     src="https://primefaces.org/cdn/primeng/images/demo/exo/{{ exo.image }}"
@@ -12,17 +11,39 @@
                     <span class="font-bold">{{ exo.name }}</span>
                     <!-- <i class="pi pi-tag text-sm"></i> -->
                     <span class="text-xs text-zinc-300">{{ equipment.get(exo.equipment) }}</span>
-                    <p-button (click)="showDialog()" icon="pi pi-external-link" class="z-10 mx-auto"
-                        label="Détail"></p-button>
-                    <p-dialog [modal]="true" header="{{ exo.name }}" [(visible)]="visible"
-                        [style]="{ width: '50vw', height: '300px' }">
-                        <p>{{ exo.instructionsTranslate }}</p>
-                    </p-dialog>
                 </div>
-                <img class="block max-w-[48px] max-h-[15px] xl:max-w-[64px] xl:max-h-[20px] w-auto h-auto"
-                    src="../../../../assets/pages/components/difficulties/{{ exo.difficulty }}.png"
-                    alt="{exo.difficulty}" />
+                <div class="flex flex-row gap-3">
+                    <p-button (click)="showDialog(exo)" icon="pi pi-external-link" class="z-10 mx-auto"
+                        label="Details"></p-button>
+                    <img class="block max-w-[48px] max-h-[15px] xl:max-w-[64px] xl:max-h-[20px] w-auto h-auto"
+                        src="../../../../assets/pages/components/difficulties/{{ exo.difficulty }}.png"
+                        alt="{exo.difficulty}" />
+                </div>
             </div>
         </ng-template>
     </p-pickList>
+    <div *ngIf="visible">
+        <p-dialog [(visible)]="visible">
+            <ng-template pTemplate="headless">
+                <div class="backdrop-blur-md bg-white bg-opacity-50 max-w-[30vw] max-h-96 p-4 rounded-md">
+                    <div class="flex justify-between items-center border-b-2 mb-2">
+                        <h2 class="text-xl font-semibold">{{ selectedExo.name }}
+                            <span class="text-lg ml-2">({{ selectedExo.difficulty }})</span>
+                        </h2>
+                        <p-button icon="pi pi-times" (click)="closeDialog()" class="z-10"></p-button>
+                    </div>
+                    <div class="flex overflow-auto flex-col">
+                        <h2 class="text-lg font-semibold">Equipment : <span class="font-normal">{{
+                                sanitizeText(selectedExo.equipment)}}</span></h2>
+                        <h2 class="text-lg font-semibold">Instructions : </h2>
+                        <p>{{ selectedExo.instructions }}</p>
+                    </div>
+                    <div class="flex flex-row-reverse w-full">
+                        <p-button label="Close" (click)="closeDialog()" [text]="true"
+                            class="w-fit text-primary-50 border-2 rounded-md p-1 transition-all border-black border-opacity-20 hover:border-opacity-10"></p-button>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dialog>
+    </div>
 </div>

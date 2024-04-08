@@ -1,6 +1,5 @@
 <div class="size-full p-10">
-    <h1 class="text-3xl text-center font-semibold mb-10">Let's build your session together</h1>
-
+    <h1 class="text-3xl text-center font-semibold">Let's build your session together</h1>
     <div class="px-52 py-10 size-full">
         <div class="rounded-3xl bg-zinc-100 size-full flex">
             <div class="flex flex-col gap-10">
@@ -24,7 +23,7 @@
                     exercises available for these criteria.</h2>
                 <h2 *ngIf="exercises.length !=0 && !loading" class="text-xl font-semibold">Next, choose an exercise:
                 </h2>
-                <app-exercises *ngIf="(exercises.length != 0 && !loading) || !firstLoad" [exercises]="exercises"
+                <app-exercises *ngIf="exercises.length != 0 && (!loading || !firstLoad)" [exercises]="exercises"
                     class="overflow-auto" (selectedExercisesChange)="onExercisesSelected($event)" />
             </div>
         </div>
