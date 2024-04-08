@@ -62,9 +62,7 @@ export class SeanceComponent {
   }
 
   onExercisesSelected(value: Exercise[]) {
-    this._selectedExercises = value;
-    console.log(this._selectedExercises)
-
+    this._selectedExercises = [...value];
   }
 
   exportPDF(event: Event) {

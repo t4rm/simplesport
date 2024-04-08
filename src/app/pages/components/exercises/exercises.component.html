@@ -1,7 +1,8 @@
 <div class="card">
     <p-pickList [source]="exercises" [target]="selectedExercises" sourceHeader="Available" targetHeader="Selected"
         [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '100%' }" [targetStyle]="{ height: '100%' }"
-        breakpoint="1400px" (onMoveToSource)="updateSelectedExercises()" (onMoveToTarget)="updateSelectedExercises()">
+        breakpoint="1400px" (onMoveToSource)="updateSelectedExercises()" (onMoveToTarget)="updateSelectedExercises()"
+        (onMoveAllToSource)="updateSelectedExercises()" (onMoveAllToTarget)="updateSelectedExercises()">
         <ng-template let-exo pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center gap-3">
                 <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round"

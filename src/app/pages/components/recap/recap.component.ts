@@ -1,11 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { convertMinutesToTimeString } from '../../../utils/time';
+import { Exercise } from '../../../types/exercise';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recap',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './recap.component.html'
 })
-export class RecapComponent {
+export class RecapComponent implements OnChanges {
+  @Input() exercises: Exercise[] = [];
+  sessionDuration!: number;
+  sessionDurationString!: string;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['exercises']) {
+      this.updateSessionDuration();
+    }
+  }
+
+  updateSessionDuration() {
+    this.sessionDuration = 3 * (this.exercises.length * 0.5 + this.exercises.length * 3);
+    this.sessionDurationString = convertMinutesToTimeString(this.sessionDuration);
+  }
 
 }

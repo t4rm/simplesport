@@ -2,16 +2,17 @@
     <h1 class="text-3xl text-center font-semibold">Let's build your session together</h1>
     <div class="px-52 py-10 size-full">
         <div class="rounded-3xl bg-zinc-100 size-full flex">
-            <div class="flex flex-col gap-10">
+            <div class="flex flex-col gap-10 overflow-y-clip">
                 <div class="w-96 min-h-fit p-4 flex flex-col gap-4">
                     <h2 class="text-xl font-semibold">Let's start by selecting a muscle:</h2>
                     <app-dropdown-muscle (selectedValue)="onMuscleSelected($event)" />
                     <h2 *ngIf="selectedMuscle" class="text-xl font-semibold">For what goal?</h2>
                     <app-radio-type *ngIf="selectedMuscle" (selectedTypeEvent)="onTypeSelected($event)" />
                 </div>
-                <div class="flex w-96 flex-col p-4 h-full border-t-2" *ngIf="selectedExercises.length != 0">
-                    <h2 class="text-xl font-semibold">Summary of your session:</h2>
-                    <app-recap />
+                <div class="flex w-96 flex-col p-4 max-h-[35rem] h-full border-t-2"
+                    *ngIf="selectedExercises.length != 0">
+                    <h2 class="text-xl font-semibold">Summary of your session: </h2>
+                    <app-recap [exercises]="selectedExercises" class="overflow-auto" />
                     <button pButton pRipple type="button" label="Export"
                         class="p-button-raised bg-emerald-200 w-fit px-4 py-2 ml-auto mt-auto"
                         (click)="exportPDF($event)"></button>
@@ -19,12 +20,15 @@
             </div>
             <div class="flex flex-col size-full p-4 gap-4 border-l-2">
                 <h2 *ngIf="loading" class="text-xl font-semibold">Loading exercises...</h2>
-                <h2 *ngIf="selectedType && exercises.length === 0 && !loading" class="text-xl font-semibold">No
+                <h2 *ngIf="selectedType && (exercises.length === 0 && selectedExercises.length != 0) && !loading"
+                    class="text-xl font-semibold">No
                     exercises available for these criteria.</h2>
                 <h2 *ngIf="exercises.length !=0 && !loading" class="text-xl font-semibold">Next, choose an exercise:
                 </h2>
-                <app-exercises *ngIf="exercises.length != 0 && (!loading || !firstLoad)" [exercises]="exercises"
-                    class="overflow-auto" (selectedExercisesChange)="onExercisesSelected($event)" />
+                <app-exercises
+                    *ngIf="((exercises.length != 0 || selectedExercises.length != 0) && (!loading || !firstLoad))"
+                    [exercises]="exercises" class="overflow-auto"
+                    (selectedExercisesChange)="onExercisesSelected($event)" />
             </div>
         </div>
     </div>

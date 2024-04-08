@@ -1,3 +1,12 @@
-<div>
-
+<div class="flex flex-col gap-2 p-1">
+    <h2 class="text-lg font-semibold">Exercise{{ exercises.length > 1 ? "s" : "" }} : <span
+            class="text-sm font-normal">{{exercises.length}}
+            exercise{{ exercises.length > 1 ? "s" : "" }}</span></h2>
+    <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-1 overflow-auto">
+            <p *ngFor="let exercise of exercises">- {{ exercise.name }}</p>
+        </div>
+    </div>
+    <h2 class="text-lg font-semibold">Duration :</h2>
+    <p>{{ sessionDurationString }}</p>
 </div>
