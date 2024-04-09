@@ -9,11 +9,11 @@ import * as Config from 'config';
 import { ServerConfig } from './app.types';
 
 async function bootstrap(config: ServerConfig) {
-  console.log('config', config)
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({ logger: true }),
   );
+  app.enableCors();
   await app.listen(config.port, config.host);
   Logger.log(
     `SimpleSport API est disponible : http://${config.host}:${config.port}`,
@@ -22,3 +22,4 @@ async function bootstrap(config: ServerConfig) {
 }
 
 bootstrap(Config.get<ServerConfig>('server'));
+

@@ -90,16 +90,16 @@ export class SeanceComponent {
 
   fetchExercises(): void {
     this._loading = true;
-    const url: string = `${environment.ninjaUrl}/exercises?muscle=${this.selectedMuscle}&type=${this.selectedType}`;
+    const url: string = `${environment.localApiUrl}/query?muscle=${this.selectedMuscle}&type=${this.selectedType}`;
 
     const headers: HttpHeaders = new HttpHeaders({
-      'X-Api-Key': environment.ninjaKey,
       'Content-Type': 'application/json'
     });
 
     this.http.get<Exercise[]>(url, { headers: headers })
       .pipe(
         tap((result) => {
+          console.log('Result:', result)
           this._exercises = [...result];
         }),
         catchError((error) => {
