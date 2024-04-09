@@ -7,7 +7,10 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'gym': "url('/assets/pages/images/gym.jpg')",
-      })
+      }),
+      screens: {
+        'xxs': '320px',
+      },
     },
   },
   plugins: [],

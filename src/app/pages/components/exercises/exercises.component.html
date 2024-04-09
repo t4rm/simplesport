@@ -26,7 +26,7 @@
     <div *ngIf="visible">
         <p-dialog [(visible)]="visible">
             <ng-template pTemplate="headless">
-                <div class="backdrop-blur-md bg-white bg-opacity-50 max-w-[30vw] max-h-96 p-4 rounded-md">
+                <div class="backdrop-blur-md bg-white bg-opacity-50 size-full max-w-[90vw] max-h-[90vh] lg:max-h-['none'] lg:max-w-[30vw] p-4 rounded-md">
                     <div class="flex justify-between items-center border-b-2 mb-2">
                         <h2 class="text-xl font-semibold">{{ selectedExo.name }}
                             <span class="text-lg ml-2">({{ selectedExo.difficulty }})</span>
