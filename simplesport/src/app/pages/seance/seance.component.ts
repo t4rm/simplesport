@@ -39,7 +39,7 @@ export class SeanceComponent {
 
   constructor(private http: HttpClient) { }
 
-  // Getters et setters :
+  // Getters :
   get exercises(): Exercise[] { return this._exercises; }
   get selectedMuscle(): string { return this._selectedMuscle; }
   get selectedType(): string { return this._selectedType; }
@@ -134,28 +134,4 @@ export class SeanceComponent {
       )
       .subscribe();
   }
-
-
-  // ajouterExASeance(exercice: Exercise): void {
-  //   if (!this.exercisesChoisis.find(ex => ex[0] === exercice.name)) {
-  //     this.exercisesChoisis.push([exercice.name, exercice.series])
-  //   }
-  // }
-
-  // getTempsSeance(minReposEntreSeries: number): string {
-  //   let tempsSeance: number = 0;
-
-  //   this.exercisesChoisis.forEach(ex => {
-  //     tempsSeance += (ex[1] - 1) * minReposEntreSeries + 0.5 // 0.5min = tps serie; 
-  //   });
-
-  //   tempsSeance += 15 + 3 * this.exercisesChoisis.length - 1;
-
-  //   if (tempsSeance > 60) {
-  //     return Math.floor(tempsSeance / 60) + 'h' + tempsSeance % 60 + 'min';
-  //   }
-  //   return tempsSeance.toString() + 'min';
-  // }
-
-
 }

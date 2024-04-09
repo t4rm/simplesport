@@ -5,12 +5,8 @@
         (onMoveAllToSource)="updateSelectedExercises()" (onMoveAllToTarget)="updateSelectedExercises()">
         <ng-template let-exo pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center gap-3">
-                <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round"
-                    src="https://primefaces.org/cdn/primeng/images/demo/exo/{{ exo.image }}"
-                    alt="{item.name}" /> -->
                 <div class="flex-1 flex items-center gap-2">
                     <span class="font-bold">{{ exo.name }}</span>
-                    <!-- <i class="pi pi-tag text-sm"></i> -->
                     <span class="text-xs text-zinc-300">{{ equipment.get(exo.equipment) }}</span>
                 </div>
                 <div class="flex flex-row gap-3">
@@ -26,7 +22,8 @@
     <div *ngIf="visible">
         <p-dialog [(visible)]="visible">
             <ng-template pTemplate="headless">
-                <div class="backdrop-blur-md bg-white bg-opacity-50 size-full max-w-[90vw] max-h-[90vh] lg:max-h-['none'] lg:max-w-[30vw] p-4 rounded-md">
+                <div
+                    class="backdrop-blur-md bg-white bg-opacity-50 size-full max-w-[90vw] max-h-[90vh] lg:max-h-['none'] lg:max-w-[30vw] p-4 rounded-md">
                     <div class="flex justify-between items-center border-b-2 mb-2">
                         <h2 class="text-xl font-semibold">{{ selectedExo.name }}
                             <span class="text-lg ml-2">({{ selectedExo.difficulty }})</span>
