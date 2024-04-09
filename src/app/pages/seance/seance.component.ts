@@ -81,7 +81,7 @@ export class SeanceComponent {
     this.http.get<Exercise[]>(url, { headers: headers })
       .pipe(
         tap((result) => {
-          this._exercises = [...this._exercises, ...result];
+          this._exercises = [...result];
         }),
         catchError((error) => {
           console.error('Error:', error);

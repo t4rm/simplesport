@@ -1,5 +1,5 @@
 <div class="card flex justify-content-center">
-    <div class="flex flex-wrap gap-3">
+    <div class="flex flex-wrap gap-2 lg:gap-3 h-fit max-w-[30rem]">
         <div class="flex align-items-center" *ngFor="let exerciseType of exerciseTypes | keyvalue; index as i">
             <p-radioButton name="exercise" [value]="exerciseType.key" [(ngModel)]="type" [inputId]="'type' + i"
                 (click)="onTypeSelected()"></p-radioButton>
