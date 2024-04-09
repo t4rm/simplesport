@@ -18,7 +18,7 @@
                 <div class="flex-col p-4 max-h-[35rem] size-full hidden lg:flex border-t-2"
                     *ngIf="selectedExercises.length != 0">
                     <h2 class="text-xl font-semibold">Summary of your session: </h2>
-                    <app-recap [exercises]="selectedExercises" class="overflow-auto" />
+                    <app-recap [exercises]="selectedExercises" class="overflow-auto" #toPdf id="toPdf" />
                     <button pButton pRipple type="button" label="Export"
                         class="p-button-raised bg-emerald-200 w-fit px-4 py-2 ml-auto mt-auto"
                         (click)="exportPDF($event)"></button>

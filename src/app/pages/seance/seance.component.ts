@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { jsPDF } from 'jspdf';
 import { ExercisesComponent } from '../components/exercises/exercises.component';
 import { DropdownMuscleComponent } from '../components/dropdown-muscle/dropdown-muscle.component';
 import { ButtonModule } from 'primeng/button';
@@ -21,6 +22,8 @@ import { DialogModule } from 'primeng/dialog';
 })
 
 export class SeanceComponent {
+  @ViewChild('toPdf', { static: false }) toPdf!: ElementRef;
+
   muscles = MUSCLES;
   types = TYPES;
 
@@ -65,8 +68,24 @@ export class SeanceComponent {
     this._selectedExercises = [...value];
   }
 
-  exportPDF(event: Event) {
-    console.log("export vers PDF à faire")
+
+  public exportPDF(event: Event) {
+    const doc = new jsPDF();
+
+    const specialElementHandlers = {
+      '#editor': function (element: any, renderer: any) {
+        return true;
+      }
+    };
+
+    const exercises = this.selectedExercises.map(exercise => exercise.name).join(", ");
+    doc.text(exercises, 15, 15);
+
+    const pdfDataUri = doc.output('datauristring');
+    const newTab = window.open();
+    if (newTab) {
+      newTab.location.href = pdfDataUri;
+    }
   }
 
   fetchExercises(): void {
