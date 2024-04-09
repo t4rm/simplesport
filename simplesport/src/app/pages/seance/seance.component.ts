@@ -5,7 +5,7 @@ import { DropdownMuscleComponent } from '../components/dropdown-muscle/dropdown-
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment.development';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, min, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RadioTypeComponent } from '../components/radio-type/radio-type.component';
@@ -35,6 +35,7 @@ export class SeanceComponent {
   private _firstLoad: boolean = true;
 
   @Input() visible: boolean = false;
+  @Input() durationString: string = "";
 
   constructor(private http: HttpClient) { }
 
@@ -68,23 +69,43 @@ export class SeanceComponent {
     this._selectedExercises = [...value];
   }
 
+  handleSessionDurationString(durationStr: string) {
+    this.durationString = durationStr;
+  }
+
 
   public exportPDF(event: Event) {
     const doc = new jsPDF();
 
-    const specialElementHandlers = {
-      '#editor': function (element: any, renderer: any) {
-        return true;
-      }
-    };
+    doc.addImage('../../../assets/layout/images/logo.png', 'PNG', 60, 10, 50, 50);
+    doc.setFontSize(22); // set the font size
+    doc.text('SimpleSport', 110, 35);
 
-    const exercises = this.selectedExercises.map(exercise => exercise.name).join(", ");
-    doc.text(exercises, 15, 15);
+    doc.setFontSize(20);
+    doc.text('Your sesion :', 15, 70);
 
-    const pdfDataUri = doc.output('datauristring');
+    doc.setFontSize(16);
+    this.selectedExercises.forEach((exercise, index) => {
+      doc.text(`${index + 1}. ${exercise.name}`, 15, 80 + index * 10);
+    });
+
+    const minY = 80 + this.selectedExercises.length * 10;
+    doc.text('Rest time between sets: 1min', 15, minY + 20);
+    doc.text('Rest time between exercises: 3min', 15, minY + 30);
+    doc.text('Total estimated time: ' + this.durationString, 15, minY + 40);
+
+    doc.setFontSize(12);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const signatureX = pageWidth - 70;
+    const signatureY = pageHeight - 10;
+    doc.text("SimpleSport generated document", signatureX, signatureY);
+
+    const pdfBlob = doc.output('blob');
+    const pdfUrl = URL.createObjectURL(pdfBlob);
     const newTab = window.open();
     if (newTab) {
-      newTab.location.href = pdfDataUri;
+      newTab.location.href = pdfUrl;
     }
   }
 

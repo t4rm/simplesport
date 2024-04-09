@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { convertMinutesToTimeString } from '../../../utils/time';
 import { Exercise } from '../../../types/exercise';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class RecapComponent implements OnChanges {
   @Input() exercises: Exercise[] = [];
   sessionDuration!: number;
+  @Output() sessionDurationStrChange = new EventEmitter<string>();
   sessionDurationString!: string;
 
   ngOnChanges(changes: SimpleChanges) {
@@ -23,6 +24,7 @@ export class RecapComponent implements OnChanges {
   updateSessionDuration() {
     this.sessionDuration = 3 * (this.exercises.length * 0.5 + this.exercises.length * 3);
     this.sessionDurationString = convertMinutesToTimeString(this.sessionDuration);
+    this.sessionDurationStrChange.emit(this.sessionDurationString);
   }
 
 }
