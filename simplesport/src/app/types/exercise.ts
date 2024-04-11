@@ -7,3 +7,14 @@ export interface Exercise {
     type: string;
     series: number;
 }
+
+export interface Gym {
+    name: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+    category: string;
+}

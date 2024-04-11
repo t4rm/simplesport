@@ -1,0 +1,21 @@
+<div class="absolute top-[80px] left-[10px] size-4 bg-red z-[2]">
+    <div
+        class="bg-white border-2 border-black border-opacity-20 rounded-sm flex justify-center items-center size-[35px]">
+        <button class="pi pi-bars" (click)="toggleMenuState()"></button>
+    </div>
+</div>
+
+<aside [@slideInOut]="menuState"
+    class="absolute z-[3] inset-2 h-fit max-w-fit flex flex-col gap-3 bg-zinc-100 border-2 sm:p-4 p-1 rounded-xl">
+    <div class="flex flex-col gap-2">
+        <p-listbox [filter]="true" [options]="gyms" optionLabel="name" [style]="{'width':'15rem'}"
+            [listStyle]="{'max-height': '220px'}">
+            <ng-template class="pb-0" pTemplate="header">
+                <h1 class="text-xl font-semibold -mb-4">Select a gym !</h1>
+            </ng-template>
+        </p-listbox>
+    </div>
+    <div>
+        <button class="p-button hover:text-zinc-600" (click)="toggleMenuState()">Close</button>
+    </div>
+</aside>
