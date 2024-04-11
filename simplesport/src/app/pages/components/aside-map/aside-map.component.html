@@ -19,7 +19,35 @@
             </ng-template>
         </p-listbox>
     </div>
-    <div>
+    <div class="flex justify-between w-full">
         <button class="p-button hover:text-zinc-600" (click)="toggleMenuState()">Close</button>
+        <button class="p-button hover:text-zinc-600" (click)="toggleDialog()">Add</button>
     </div>
 </aside>
+
+<div *ngIf="dialogIsVisible">
+    <p-dialog [(visible)]="dialogIsVisible">
+        <ng-template pTemplate="headless">
+            <div
+                class="backdrop-blur-md bg-white bg-opacity-50 size-full max-w-[90vw] max-h-[90vh] lg:max-h-['none'] lg:max-w-[30vw] p-4 rounded-md">
+                <div class="flex justify-between items-center border-b-2 border-black border-opacity-10 mb-2">
+                    <h2 class="text-xl font-semibold">Add a new Gym :</h2>
+                </div>
+                <div class="flex overflow-auto flex-col gap-1">
+                    <input type="number" class="outline-none border-none pl-1 rounded-md" placeholder="Latitude"
+                        [(ngModel)]="lat">
+                    <input type="number" class="outline-none border-none pl-1 rounded-md" placeholder="Longitude"
+                        [(ngModel)]="lng">
+                    <input type="text" class="outline-none border-none pl-1 rounded-md" placeholder="Name"
+                        [(ngModel)]="name">
+                </div>
+                <div class="flex flex-row-reverse w-full gap-2 mt-2">
+                    <p-button label="Confirm" (click)="addGym()" [text]="true"
+                        class="w-fit text-primary-50 border-2 rounded-md p-1 transition-all border-green-950 bg-green-300 bg-opacity-10 border-opacity-20 hover:border-opacity-10"></p-button>
+                    <p-button label="Close" (click)="toggleDialog()" [text]="true"
+                        class="w-fit text-primary-50 border-2 rounded-md p-1 transition-all border-black border-opacity-20 hover:border-opacity-10"></p-button>
+                </div>
+            </div>
+        </ng-template>
+    </p-dialog>
+</div>
