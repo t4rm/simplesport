@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class MapComponent implements OnInit {
   @Input() gyms!: Gym[];
   @Input() selectedGym!: Gym;
+
+  @Output() selectedValue = new EventEmitter<Gym>();
 
   mapReady = false;
   title = 'SimpleSport - Find a gym close to you !';
@@ -62,7 +64,7 @@ export class MapComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['gyms'] && this.map) {
-      getMarkersFromGyms(this.gyms, this.map, getIcon()).forEach((marker) => marker.addTo(this.map));
+      getMarkersFromGyms(this.gyms, this.map, getIcon(), this.selectedValue).forEach((marker) => marker.addTo(this.map));
     }
 
     if (changes['selectedGym'] && this.map) {
@@ -96,10 +98,14 @@ export const getLayers = (): Leaflet.Layer[] => {
   ] as Leaflet.Layer[];
 };
 
-export const getMarkersFromGyms = (gyms: Gym[], map: Leaflet.Map, icon: Leaflet.Icon): Leaflet.Marker[] => gyms.map(({ lat, lng, name }: Gym) => new Leaflet.Marker(
+export const getMarkersFromGyms = (gyms: Gym[], map: Leaflet.Map, icon: Leaflet.Icon, event: EventEmitter<Gym>): Leaflet.Marker[] => gyms.map(({ lat, lng, name }: Gym) => new Leaflet.Marker(
   new Leaflet.LatLng(lat, lng), {
     icon: icon,
     title: name
   } as Leaflet.MarkerOptions
-).on('click', () => { map.setView(new Leaflet.LatLng(lat, lng), 16); })
+).on('click', () => {
+  map.setView(new Leaflet.LatLng(lat, lng), 18);
+  event.emit({ lat, lng, name } as Gym);
+})
+
 ); // Notre type GYM permets de pouvoir effectuer cela directement.

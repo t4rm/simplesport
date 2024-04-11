@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ListboxChangeEvent, ListboxModule } from 'primeng/listbox';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { Listbox, ListboxChangeEvent, ListboxModule } from 'primeng/listbox';
 import { Exercise, Gym } from '../../../types/exercise';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -7,11 +7,12 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError, of } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-aside-map',
   standalone: true,
-  imports: [ListboxModule, CommonModule, ButtonModule],
+  imports: [ListboxModule, CommonModule, ButtonModule, FormsModule],
   templateUrl: './aside-map.component.html',
   animations: [
     trigger('slideInOut', [
@@ -32,14 +33,31 @@ export class AsideMapComponent implements OnInit {
   selectedGym!: Gym;
   visibleSidebar = false;
 
+  @Input() markerSelect: Gym | null = null;
   @Output() allGyms = new EventEmitter<Gym[]>();
   @Output() selectedValue = new EventEmitter<Gym>();
+
+  @ViewChildren('row', { read: ElementRef }) rowElement!: QueryList<ElementRef>;
 
   constructor(private http: HttpClient) { }
 
   handleChange(event: ListboxChangeEvent) {
     this.selectedGym = event.value as Gym;
     this.selectedValue.emit(this.selectedGym);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['markerSelect'] && changes['markerSelect'].currentValue) {
+      console.log('markerSelect has changed:', changes['markerSelect'].currentValue);
+      this.selectedGym = this.gyms.find((gym) => gym.name === changes['markerSelect'].currentValue.name) || this.gyms[0];
+      this.scrollToSelectedOption(this.gyms.indexOf(this.selectedGym));
+    }
+  }
+
+  scrollToSelectedOption(index: number = 0) {
+    const el = this.rowElement.find(r => r.nativeElement.id === `gym-${index}`);
+    if (!el) return;
+    el.nativeElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "center" });
   }
 
   ngOnInit() {

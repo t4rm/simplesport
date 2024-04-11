@@ -8,10 +8,14 @@
 <aside [@slideInOut]="menuState"
     class="absolute z-[3] inset-2 h-fit max-w-fit flex flex-col gap-3 bg-zinc-100 border-2 sm:p-4 p-1 rounded-xl">
     <div class="flex flex-col gap-2">
-        <p-listbox [filter]="true" [options]="gyms" optionLabel="name" [style]="{'width':'15rem'}"
-            [listStyle]="{'max-height': '220px'}" styleClass="p-fix" (onChange)="handleChange($event)">
+        <p-listbox #listGymsBox [(ngModel)]="selectedGym" [filter]="true" [options]="gyms" optionLabel="name"
+            [style]="{'width':'15rem'}" [listStyle]="{'max-height': '220px'}" styleClass="p-fix"
+            (onChange)="handleChange($event)">
             <ng-template class="pb-0" pTemplate="header">
                 <h1 class="text-xl font-semibold -mb-4">Select a gym !</h1>
+            </ng-template>
+            <ng-template pTemplate="item" let-gym let-i="index">
+                <span #row id="gym-{{i}}">{{gym.name}}</span>
             </ng-template>
         </p-listbox>
     </div>

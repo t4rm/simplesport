@@ -1,7 +1,7 @@
 [
     {
-        "lat": 49.11759616966997,
-        "lng": 6.175947250959281,
+        "lat": 49.117292,
+        "lng": 6.175446,
         "name": "Basic-Fit Metz Rue Serpenoise",
         "category": [
             "bodybuilding",
@@ -9,8 +9,8 @@
         ]
     },
     {
-        "lat": 49.15137340530089,
-        "lng": 6.189404072659347,
+        "lat": 49.148907,
+        "lng": 6.174825,
         "name": "Basic-Fit Woippy C.Cial Auchan Metz Woippy",
         "category": [
             "bodybuilding",
@@ -18,8 +18,8 @@
         ]
     },
     {
-        "lat": 49.09746282590867,
-        "lng": 6.179967761028302,
+        "lat": 49.09721,
+        "lng": 6.18009,
         "name": "Basic-Fit Metz Sablon Rue des Plantes",
         "category": [
             "bodybuilding",
@@ -27,8 +27,8 @@
         ]
     },
     {
-        "lat": 49.10948977513363,
-        "lng": 6.232423607780842,
+        "lat": 49.10665,
+        "lng": 6.23352,
         "name": "Basic-Fit Metz - Bd Solidarité",
         "category": [
             "bodybuilding",
@@ -36,8 +36,8 @@
         ]
     },
     {
-        "lat": 49.07996609539981,
-        "lng": 6.111724371131897,
+        "lat": 49.07604,
+        "lng": 6.10536,
         "name": "Basic-Fit Augny Rue du Bois d’Orly",
         "category": [
             "bodybuilding",
@@ -45,8 +45,8 @@
         ]
     },
     {
-        "lat": 49.194858092006314,
-        "lng": 6.193950170630111,
+        "lat": 49.19143,
+        "lng": 6.14313,
         "name": "Basic-Fit Semecourt Voie Romaine",
         "category": [
             "bodybuilding",
@@ -54,8 +54,8 @@
         ]
     },
     {
-        "lat": 49.137290931498846,
-        "lng": 6.205191058561906,
+        "lat": 49.13440,
+        "lng": 6.19869,
         "name": "Keepcool Metz Saint-Julien",
         "category": [
             "bodybuilding",
@@ -63,8 +63,8 @@
         ]
     },
     {
-        "lat": 49.109677672934836,
-        "lng": 6.187394820305188,
+        "lat": 49.10659,
+        "lng": 6.17603,
         "name": "Keepcool Metz Gare",
         "category": [
             "bodybuilding",
@@ -72,8 +72,8 @@
         ]
     },
     {
-        "lat": 49.079604948425384,
-        "lng": 6.144518802572241,
+        "lat": 49.07829,
+        "lng": 6.14482,
         "name": "Keepcool Metz Sud",
         "category": [
             "bodybuilding",
