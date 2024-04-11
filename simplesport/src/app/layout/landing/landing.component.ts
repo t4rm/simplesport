@@ -39,19 +39,21 @@ export class LandingAnimationComponent {
   revealImage() {
     const imgContainer = this.q('#img-container')[0];
     const img = this.q('img');
+    const isMobile = window.innerWidth < 1024;
+    const size = isMobile ? '100px' : '250px';
 
     this.tl.to(imgContainer, {
-      width: '250px',
-      height: '250px',
+      width: size,
+      height: size,
     })
       .to(img, {
         ease: 'linear',
         clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)',
         duration: 0.30,
-      }, "<").call(() => this.moveImageToHeader());
+      }, "<").call(() => this.moveImageToHeader(isMobile));
   }
 
-  moveImageToHeader() {
+  moveImageToHeader(isMobile = false) {
     const imgContainer = this.q('#img-container')[0];
     const img = this.q('img')[0];
     const lowerSpans = this.q('div > div > div > span');
@@ -60,6 +62,8 @@ export class LandingAnimationComponent {
     const imgRect = img.getBoundingClientRect();
     const xOffset = targetRect.left - imgRect.left;
     const yOffset = targetRect.top - imgRect.top;
+
+    const margin = isMobile ? '-108px' : '-240px';
 
     this.tl.to(img, {
       x: xOffset + 32,
@@ -73,8 +77,8 @@ export class LandingAnimationComponent {
       duration: 0.5,
       opacity: 0,
     }, ">").to(imgContainer, {
-      marginLeft: '-240px',
-      marginRight: '-240px',
+      marginLeft: margin,
+      marginRight: margin,
       duration: 1,
       ease: 'power2.inOut',
     }, ">").call(() => this.revealHeader())

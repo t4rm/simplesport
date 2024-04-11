@@ -10,11 +10,13 @@ export interface Exercise {
 
 export interface Gym {
     name: string;
-    address: string;
-    city: string;
-    postalCode: string;
-    country: string;
-    latitude: number;
-    longitude: number;
-    category: string;
+    lat: number;
+    lng: number;
+    categorie: string[];
+}
+
+export interface Marker {
+    lat: number;
+    lng: number;
+    name: string;
 }

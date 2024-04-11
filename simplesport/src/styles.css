@@ -7,16 +7,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'NexusBold';
-    src: url('assets/fonts/nexusbold/Nexusbold Regular.otf') format('opentype'),
-        url('assets/fonts/nexusbold/Nexusbold Regular.ttf') format('truetype'),
-        url('assets/fonts/nexusbold/Nexusbold Regularitalic.otf') format('opentype'),
-        url('assets/fonts/nexusbold/Nexusbold Regularitalic.ttf') format('truetype'),
-        url('assets/fonts/nexusbold/Nexusbold Rounded.otf') format('opentype'),
-        url('assets/fonts/nexusbold/Nexusbold Rounded.ttf') format('truetype'),
-        url('assets/fonts/nexusbold/Nexusbold Roundeditalic.otf') format('opentype'),
-        url('assets/fonts/nexusbold/Nexusbold Roundeditalic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal, italic;
+.p-fix>.p-listbox-header>.p-listbox-filter-container>.p-inputtext {
+    padding-left: 10px;
+    padding-right: 15%;
 }
