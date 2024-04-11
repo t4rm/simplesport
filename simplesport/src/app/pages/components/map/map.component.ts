@@ -25,7 +25,6 @@ export class MapComponent implements OnInit {
   onMapReady(map: Leaflet.Map) {
     this.map = map;
     this.originalLatLng = this.map.getCenter();
-    getMarkersFromGyms(this.gyms, this.map, getIcon()).forEach((marker) => marker.addTo(this.map));
   }
 
   // On initialise la carte avec la position de l'utilisateur (ou Metz par défaut), puis on charge les options de la carte qui vont directement se répercuter sur notre vue (HTML).
@@ -62,6 +61,10 @@ export class MapComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['gyms'] && this.map) {
+      getMarkersFromGyms(this.gyms, this.map, getIcon()).forEach((marker) => marker.addTo(this.map));
+    }
+
     if (changes['selectedGym'] && this.map) {
       if (changes['selectedGym'].currentValue) {
         const { lat, lng } = changes['selectedGym'].currentValue;

@@ -44,7 +44,6 @@ export class AsideMapComponent implements OnInit {
 
   ngOnInit() {
     this.fetchGyms();
-    this.allGyms.emit(this.gyms);
   }
 
   toggleMenuState() {
@@ -52,7 +51,7 @@ export class AsideMapComponent implements OnInit {
   }
 
   fetchGyms(): void {
-    const url: string = `${environment.localApiUrl}/gyms/}`;
+    const url: string = `${environment.localApiUrl}/gyms`;
 
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -61,12 +60,14 @@ export class AsideMapComponent implements OnInit {
     this.http.get<Gym[]>(url, { headers: headers })
       .pipe(
         tap((result) => {
-          console.log('Result:', result)
           this.gyms = [...result];
         }),
         catchError((error) => {
           console.error('Error:', error);
           return of([]);
+        }),
+        tap(() => {
+          this.allGyms.emit(this.gyms)
         })
       )
       .subscribe();
