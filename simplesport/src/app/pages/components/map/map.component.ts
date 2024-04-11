@@ -27,6 +27,7 @@ export class MapComponent implements OnInit {
   onMapReady(map: Leaflet.Map) {
     this.map = map;
     this.originalLatLng = this.map.getCenter();
+    getMarkersFromGyms(this.gyms, this.map, getIcon(), this.selectedValue).forEach((marker) => marker.addTo(this.map));
   }
 
   // On initialise la carte avec la position de l'utilisateur (ou Metz par défaut), puis on charge les options de la carte qui vont directement se répercuter sur notre vue (HTML).
@@ -104,8 +105,9 @@ export const getMarkersFromGyms = (gyms: Gym[], map: Leaflet.Map, icon: Leaflet.
     title: name
   } as Leaflet.MarkerOptions
 ).on('click', () => {
-  map.setView(new Leaflet.LatLng(lat, lng), 18);
+  // map.setView(new Leaflet.LatLng(lat, lng), 18);
   event.emit({ lat, lng, name } as Gym);
+  console.log('Gym sélectionnée:', name);
 })
 
 ); // Notre type GYM permets de pouvoir effectuer cela directement.
