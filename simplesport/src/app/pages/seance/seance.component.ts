@@ -85,8 +85,14 @@ export class SeanceComponent {
     doc.text('Your sesion :', 15, 70);
 
     doc.setFontSize(16);
+    let y = 80;
     this.selectedExercises.forEach((exercise, index) => {
-      doc.text(`${index + 1}. ${exercise.name}`, 15, 80 + index * 10);
+      if (y > doc.internal.pageSize.height - 20) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.text(`${index + 1}. ${exercise.name}`, 15, y);
+      y += 10;
     });
 
     const minY = 80 + this.selectedExercises.length * 10;
@@ -111,7 +117,7 @@ export class SeanceComponent {
 
   fetchExercises(): void {
     this._loading = true;
-    const url: string = `${environment.localApiUrl}/query?muscle=${this.selectedMuscle}&type=${this.selectedType}`;
+    const url: string = `${environment.localApiUrl}/exercises/query?muscle=${this.selectedMuscle}&type=${this.selectedType}`;
 
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
