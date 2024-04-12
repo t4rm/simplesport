@@ -12,7 +12,7 @@ export interface Gym {
     name: string;
     lat: number;
     lng: number;
-    categorie: string[];
+    category: string[];
 }
 
 export interface Marker {

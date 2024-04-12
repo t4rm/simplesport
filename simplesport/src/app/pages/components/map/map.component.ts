@@ -105,9 +105,8 @@ export const getMarkersFromGyms = (gyms: Gym[], map: Leaflet.Map, icon: Leaflet.
     title: name
   } as Leaflet.MarkerOptions
 ).on('click', () => {
-  // map.setView(new Leaflet.LatLng(lat, lng), 18);
   event.emit({ lat, lng, name } as Gym);
-  console.log('Gym sélectionnée:', name);
+  map.setView(new Leaflet.LatLng(lat, lng), 18);
 })
 
 ); // Notre type GYM permets de pouvoir effectuer cela directement.

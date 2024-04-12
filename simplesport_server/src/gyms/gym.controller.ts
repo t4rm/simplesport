@@ -1,6 +1,9 @@
 import {
+    Body,
     Controller,
+    Delete,
     Get,
+    Post,
     Query,
     UseInterceptors,
 } from '@nestjs/common';
@@ -26,6 +29,26 @@ export class GymController {
     @Get()
     findAll(): Observable<Gym[] | void> {
         return this._gymService.findAll();
+    }
+
+    /**
+     * Prise en charge de l'ajout
+     * @param newGym 
+     * @returns 
+     */
+    @Post()
+    addGym(@Body() newGym: Gym): Observable<Gym> {
+        return this._gymService.addGym(newGym);
+    }
+
+    /**
+     * Prise en charge de la suppression
+     * @param gym 
+     * @returns 
+    */
+    @Post('delete')
+    deleteGym(@Body() newGym: Gym): Observable<Gym> {
+        return this._gymService.deleteGym(newGym);
     }
 
 }

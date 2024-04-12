@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { AsideMapComponent } from '../components/aside-map/aside-map.component';
 import { MapComponent } from '../components/map/map.component';
 import { Gym } from '../../types/exercise';
@@ -15,6 +15,8 @@ export class SallesComponent {
   selectedGym!: Gym;
   markerSelect: Gym | null = null;
 
+  @ViewChildren('row', { read: ElementRef }) rowElement!: QueryList<ElementRef>;
+
   handleAllGyms(gyms: Gym[]) {
     this.gyms = gyms;
   }
@@ -23,7 +25,29 @@ export class SallesComponent {
     this.selectedGym = gym;
   }
 
-  handleMarkerSelect(gym: Gym) {
-    this.markerSelect = gym;
+  handleMarkerSelect(selectedGym: Gym) {
+    this.markerSelect = selectedGym;
+    this.selectedGym = this.gyms.find((gym) => gym.name === selectedGym.name) || this.gyms[0];
+    this.scrollToSelectedOption(this.gyms.indexOf(this.selectedGym));
   };
+
+  scrollToSelectedOption(index: number = 0) {
+    const element = document.getElementById('gym-'+index);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", inline: "center", block: "center" });
+      element.parentElement?.click();
+    }
+  }
+
 }
+
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes['markerSelect'] && changes['markerSelect'].currentValue) {
+  //     console.log('markerSelect has changed:', changes['markerSelect'].currentValue);
+  //     this.selectedGym = this.gyms.find((gym) => gym.name === changes['markerSelect'].currentValue.name) || this.gyms[0];
+  //     this.scrollToSelectedOption(this.gyms.indexOf(this.selectedGym));
+  //   }
+  // }
+
+
