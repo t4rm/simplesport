@@ -2,8 +2,8 @@ server:
   host: localhost
   port: 3000
 swagger:
-  title: Simple Sport Back-End API
-  description: Simple Sport Server
+  title: Simple Sport Back-End API REST
+  description: Simple Sport Server NESTJS
   version: 1.0
   tag: simplesport
   path: documentation
