@@ -11,3 +11,17 @@
     padding-left: 10px;
     padding-right: 15%;
 }
+
+.leaflet-control-layers-toggle {
+    background-image: url(assets/leaflet/layers.png);
+}
+
+.leaflet-retina .leaflet-control-layers-toggle {
+    background-image: url(assets/leaflet/layers-2x.png);
+}
+
+/* Default icon URLs */
+.leaflet-default-icon-path {
+    /* used only in path-guessing heuristic, see L.Icon.Default */
+    background-image: url(assets/leaflet/marker-icon.png);
+}

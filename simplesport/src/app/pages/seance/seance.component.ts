@@ -4,7 +4,7 @@ import { ExercisesComponent } from '../components/exercises/exercises.component'
 import { DropdownMuscleComponent } from '../components/dropdown-muscle/dropdown-muscle.component';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment.prod';
 import { catchError, min, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -117,7 +117,7 @@ export class SeanceComponent {
 
   fetchExercises(): void {
     this._loading = true;
-    const url: string = `${environment.localApiUrl}/exercises/query?muscle=${this.selectedMuscle}&type=${this.selectedType}`;
+    const url: string = `${environment.apiUrl}/exercises/query?muscle=${this.selectedMuscle}&type=${this.selectedType}`;
 
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'

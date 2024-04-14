@@ -32,7 +32,7 @@ export class SallesComponent {
   };
 
   scrollToSelectedOption(index: number = 0) {
-    const element = document.getElementById('gym-'+index);
+    const element = document.getElementById('gym-' + index);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", inline: "center", block: "center" });
       element.parentElement?.click();
@@ -41,13 +41,5 @@ export class SallesComponent {
 
 }
 
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['markerSelect'] && changes['markerSelect'].currentValue) {
-  //     console.log('markerSelect has changed:', changes['markerSelect'].currentValue);
-  //     this.selectedGym = this.gyms.find((gym) => gym.name === changes['markerSelect'].currentValue.name) || this.gyms[0];
-  //     this.scrollToSelectedOption(this.gyms.indexOf(this.selectedGym));
-  //   }
-  // }
 
 
