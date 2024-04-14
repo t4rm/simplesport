@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Include specific library
+!/node_modules/leaflet/dist
