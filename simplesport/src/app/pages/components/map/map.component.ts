@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as Leaflet from 'leaflet';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Gym } from '../../../types/exercise';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [LeafletModule, CommonModule],
+  imports: [CommonModule, LeafletModule],
   templateUrl: './map.component.html',
 })
 export class MapComponent implements OnInit {

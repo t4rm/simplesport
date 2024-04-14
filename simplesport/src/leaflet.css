@@ -356,10 +356,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	width: 26px;
 	height: 26px;
 	line-height: 26px;
+	display: block;
+	text-align: center;
 	text-decoration: none;
 	color: black;
 }
+
 .leaflet-bar a,
+.leaflet-control-layers-toggle {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	display: block;
@@ -400,8 +404,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-touch .leaflet-bar a:last-child {
 	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
 }
 
+/* zoom control */
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
@@ -424,11 +430,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 
 .leaflet-control-layers-toggle {
+	background-image: url(assets/leaflet/layers.png);
 	width: 36px;
 	height: 36px;
 }
 
 .leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(assets/leaflet/layers-2x.png);
 	background-size: 26px 26px;
 }
 
@@ -480,6 +488,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* Default icon URLs */
 .leaflet-default-icon-path {
 	/* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(assets/leaflet/marker-icon.png);
 }
 
 
